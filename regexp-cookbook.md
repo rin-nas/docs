@@ -57,3 +57,4 @@ elseif ($result > 0) print_r($m);
 else echo "Совпадений не найдено.\r\n";
 echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 ```
+https://jsfiddle.net/zqta1481/14/ Реализация метода String.match() с учётом рекурсии
