@@ -58,3 +58,5 @@ else echo "Совпадений не найдено.\r\n";
 echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 ```
 https://jsfiddle.net/zqta1481/14/ Реализация метода String.match() с учётом рекурсии
+https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во можественном числе
+https://regex101.com/r/iB63bg/1/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
