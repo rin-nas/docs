@@ -57,6 +57,7 @@ elseif ($result > 0) print_r($m);
 else echo "Совпадений не найдено.\r\n";
 echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 ```
-https://jsfiddle.net/zqta1481/14/ Реализация метода String.match() с учётом рекурсии
-https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во можественном числе
-https://regex101.com/r/iB63bg/1/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
+* https://jsfiddle.net/zqta1481/14/ Реализация метода String.match() с учётом рекурсии
+* https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во можественном числе
+* https://regex101.com/r/iB63bg/1/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
+* https://regex101.com/r/GQ1xKK/7/ Проверка ФИО на русском или английском языке
