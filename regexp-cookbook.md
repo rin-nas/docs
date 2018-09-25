@@ -57,6 +57,38 @@ elseif ($result > 0) print_r($m);
 else echo "Совпадений не найдено.\r\n";
 echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 ```
+
+```
+    #IPv4 + IPv6; PHP >= 5.2.0, PCRE 7.0+
+    #IPv6 from http://vernon.mauery.com/content/projects/linux/ipv6_regex
+    const REMOTE_ADDR = '/^(?:
+                             #IPv4
+                             (?<IPv4>
+                               (?!0+\.)
+                               (?<byte>1?\d{1,2}|2(?:[0-4]\d|5[0-5]))
+                               (?:\.(?&byte)){3}
+                             )
+                             #IPv6
+                             | (?<smb>[0-9a-f]{1,4}:){1,1} (?<sme>:[0-9a-f]{1,4}){1,6}
+                             | (?&smb){1,2} (?&sme){1,5}
+                             | (?&smb){1,3} (?&sme){1,4}
+                             | (?&smb){1,4} (?&sme){1,3}
+                             | (?&smb){1,5} (?&sme){1,2}
+                             | (?&smb){1,6} (?&sme){1,1}
+                             | ((?&smb){1,7}|:):
+                             | :(?&sme){1,7}
+                             | (?&smb){6} (?&IPv4)
+                             | (?&smb){5} :?+ [0-9a-f]{1,4} :(?&IPv4)
+                             | (?&smb){1,1} (?&sme){1,4} :(?&IPv4)
+                             | (?&smb){1,2} (?&sme){1,3} :(?&IPv4)
+                             | (?&smb){1,3} (?&sme){1,2} :(?&IPv4)
+                             | (?&smb){1,4} (?&sme){1,1} :(?&IPv4)
+                             | ((?&smb){1,5}|:) :(?&IPv4)
+                             | :(?&sme){1,5} :(?&IPv4)
+                           )
+                          $/sxSX';
+```
+
 * https://jsfiddle.net/zqta1481/14/ Реализация метода String.match() с учётом рекурсии
 * https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во множественном числе
 * https://regex101.com/r/iB63bg/2/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
