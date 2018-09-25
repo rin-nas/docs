@@ -63,3 +63,4 @@ echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 * https://regex101.com/r/GQ1xKK/13/ Проверка ФИО на русском или английском языке
 * https://regex101.com/r/WnauVT/6/ Проверка корректности даты в формате ГГГГ-ММ-ДД без проверки YYYY-02-29 в високосных годах (нужно доделать)
 * https://regex101.com/r/CcSugS/7 Детектирование SQL за модификацию данных
+* https://regex101.com/r/Q4dsL5/14 Валидация email
