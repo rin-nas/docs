@@ -107,3 +107,11 @@ echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 6. содержит хотябы один знак пунктуации: `!"#$%&'()*+,-./:;<=>?@[\]^_``{|}~`
 7. не имеют 6 и более подряд совпадающих символов типа "zzzzzz", "000000"
 8. не имеет 6 и более подряд "плохих" последовательностей типа "123456", "abcdef", "qwerty"
+
+Специальные символы по спецификации JSON (http://json.org/)
+\b represents the backspace character (U+0008)
+\t represents the character tabulation character (U+0009)
+\f represents the form feed character (U+000C)
+\n represents the line feed character (U+000A)
+\r represents the carriage return character (U+000D)
+Регулярное выражение для детектирования бинарных данных: ~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX
