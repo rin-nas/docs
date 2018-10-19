@@ -114,4 +114,4 @@ echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 \f represents the form feed character (U+000C)
 \n represents the line feed character (U+000A)
 \r represents the carriage return character (U+000D)
-Регулярное выражение для детектирования бинарных данных: ~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX
+Регулярное выражение для детектирования бинарных данных: `~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
