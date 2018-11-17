@@ -58,6 +58,7 @@ else echo "Совпадений не найдено.\r\n";
 echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 ```
 
+IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [filter_var()](http://php.net/manual/en/function.filter-var.php)
 ```
     #IPv4 + IPv6; PHP >= 5.2.0, PCRE 7.0+
     #IPv6 from http://vernon.mauery.com/content/projects/linux/ipv6_regex
@@ -118,3 +119,8 @@ echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
 Регулярное выражение для детектирования бинарных данных: `~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
 
 https://regex101.com/r/r2ESLq/1/  обработка многострочных комментариев `/\* [^\*]*+ (?>\*[^/]|[^\*]++)*+ \*/` в 2 раза эффективнее, чем `/\* .*? \*/`
+
+# TODO
+
+* https://m.habr.com/post/429548/ - Плагин «Rainbow CSV» как альтернатива Excel
+* https://m.habr.com/post/343116/ - Как я написал приложение, которое за 15 минут делало то же самое, что и регулярн...
