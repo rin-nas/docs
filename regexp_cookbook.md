@@ -1,40 +1,9 @@
 # Регулярные выражения -- склад готовых решений
 
-IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [filter_var()](http://php.net/manual/en/function.filter-var.php)
-```
-    #IPv4 + IPv6; PHP >= 5.2.0, PCRE 7.0+
-    #IPv6 from http://vernon.mauery.com/content/projects/linux/ipv6_regex
-    const REMOTE_ADDR = '/^(?:
-                             #IPv4
-                             (?<IPv4>
-                               (?!0+\.)
-                               (?<byte>1?\d{1,2}|2(?:[0-4]\d|5[0-5]))
-                               (?:\.(?&byte)){3}
-                             )
-                             #IPv6
-                             | (?<smb>[0-9a-f]{1,4}:){1,1} (?<sme>:[0-9a-f]{1,4}){1,6}
-                             | (?&smb){1,2} (?&sme){1,5}
-                             | (?&smb){1,3} (?&sme){1,4}
-                             | (?&smb){1,4} (?&sme){1,3}
-                             | (?&smb){1,5} (?&sme){1,2}
-                             | (?&smb){1,6} (?&sme){1,1}
-                             | ((?&smb){1,7}|:):
-                             | :(?&sme){1,7}
-                             | (?&smb){6} (?&IPv4)
-                             | (?&smb){5} :?+ [0-9a-f]{1,4} :(?&IPv4)
-                             | (?&smb){1,1} (?&sme){1,4} :(?&IPv4)
-                             | (?&smb){1,2} (?&sme){1,3} :(?&IPv4)
-                             | (?&smb){1,3} (?&sme){1,2} :(?&IPv4)
-                             | (?&smb){1,4} (?&sme){1,1} :(?&IPv4)
-                             | ((?&smb){1,5}|:) :(?&IPv4)
-                             | :(?&sme){1,5} :(?&IPv4)
-                           )
-                          $/sxSX';
-```
-
+* https://regex101.com/r/eVEGRY/1/ Захват IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [filter_var()](http://php.net/manual/en/function.filter-var.php)
 * https://regex101.com/r/jwH6O2/4 Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно)
 * https://regex101.com/r/JVzBz2/3 Захват тегов с учётом их парности без вложенных тагов
-* https://jsfiddle.net/zqta1481/14/ Реализация метода String.match() с учётом рекурсии
+* https://jsfiddle.net/zqta1481/14/ Реализация JavaScript метода String.match() с учётом рекурсии
 * https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во множественном числе
 * https://regex101.com/r/iB63bg/2/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
 * https://regex101.com/r/GQ1xKK/14/ Проверка ФИО на русском или английском языке
