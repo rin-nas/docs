@@ -1,29 +1,12 @@
 # Регулярные выражения -- склад готовых решений
 
-## Обход вложенных тагов с учётом их парности и вложенности друг в друга (рекурсивно)
+## Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно)
 
-https://regex101.com/r/jwH6O2/2 - рег. выражение с раскруткой цикла, атомарной группировкой и запрещением сохранения состояний для возврата
+https://regex101.com/r/jwH6O2/4 
 
-## поиск тагов без вложенных тагов
-```
-$re = '/
-          ' . $re_opentag . '
-             [^\[]*+
-             (?>
-                  [^\[]*+
-                | (?!' . $re_opentag . '|' . $re_closetag . ').
-             )*
-          ' . $re_closetag . '
-       /sxiSX';
-}
-echo $re . "\r\n";
-$time_start = microtime(true);
-for ($i = 0; $i < 5000; $i++) $result = preg_match_all($re, $s, $m);
-if ($result === false) echo "Произошла ошибка с кодом " . preg_last_error() . "\r\n";
-elseif ($result > 0) print_r($m);
-else echo "Совпадений не найдено.\r\n";
-echo "\r\n" . (microtime(true) - $time_start) . "\r\n";
-```
+## Захват тегов с учётом их парности без вложенных тагов
+
+https://regex101.com/r/JVzBz2/3
 
 IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [filter_var()](http://php.net/manual/en/function.filter-var.php)
 ```
