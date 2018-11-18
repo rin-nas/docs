@@ -2,7 +2,7 @@
 # Сравнение SQL шаблонизатора vs ORM или QueryBuilder
 
 ## Введение
-* Принцип [KISS](https://ru.wikipedia.org/wiki/KISS_(%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF)) утверждает, что большинство систем работают лучше всего, если они остаются простыми, а не усложняются. В области проектирования простота должна быть одной из ключевых целей, и следует избегать ненужной сложности. 
+* Принцип [KISS](https://ru.wikipedia.org/wiki/KISS_(%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF)) утверждает, что большинство систем работают лучше всего, если они остаются простыми, а не усложняются. В области проектирования IT решений простота должна быть одной из ключевых целей, и следует избегать ненужной сложности. 
 * По [ORM](https://ru.wikipedia.org/wiki/ORM) ознакомьтесь [с этой статьёй на Хабре](https://m.habr.com/company/pgdayrussia/blog/328690/).
 * По QueryBuilder ознакомьтесь с разделом документации [Laravel](http://laravel.su/docs/5.5/queries) и/или [Doctrine](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/query-builder.html).
 
