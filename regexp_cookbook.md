@@ -1,9 +1,8 @@
 # Регулярные выражения
 
 ## Диалекты
-
 * PCRE
-* JavaScript
+* JavaScript (JS)
 
 ## Методы обработки
 * Проверка соответствия (валидация): [`RegExp.test()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)
@@ -18,12 +17,18 @@
 Из частичного соответствия очень легко сделать полное, указав `^` в начале и `$` в конце. В обратную сторону — сложнее, т.к.  при необходимости необходимо явно указывать границы начала и конца подстроки. Обычно это делают через `(?<!...)` и `(?!...)` соответственно.
 
 ## Склад готовых решений
-* https://regex101.com/r/eVEGRY/1/ Захват IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
-* https://regex101.com/r/JVzBz2/3 Захват тегов с учётом их парности без вложенных таких же тегов (PCRE)
-* https://regex101.com/r/CvlwKz/1 Захват тегов с учётом их парности без вложенных таких же тегов (JS)
-* https://regex101.com/r/jwH6O2/4 Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно) (PCRE)
-* https://regex101.com/r/IVSo1x/1 Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно) (JS) http://jsfiddle.net/rea4sxgn/ -- генератор рег. выражения до заданной глубины рекурсии
-* https://jsfiddle.net/zqta1481/14/ Реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии
+
+### Полезняшки
+
+* [JS](https://jsfiddle.net/zqta1481/14/) Реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии
+* [JS](https://jsfiddle.net/rea4sxgn/) Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS
+
+### Форматы
+* [PCRE](https://regex101.com/r/eVEGRY/1/) IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
+
+### Захват html тегов
+* [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1) Захват тегов с учётом их парности без вложенных таких же тегов
+* [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1) Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно).
 * https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во множественном числе
 * https://regex101.com/r/iB63bg/2/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
 * https://regex101.com/r/GQ1xKK/14/ Проверка ФИО на русском или английском языке
@@ -49,7 +54,7 @@
 
 ### Детектирование бинарных данных
 
-Ищем до первого найденного [управляющего символа](https://unicode-table.com/ru/#control-character) по регулярному выражению `~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
+Ищем до первого найденного [управляющего символа](https://unicode-table.com/ru/#control-character) по регулярному выражению PCRE и JS `/[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])/`
 
 [JSON](http://json.org/) не должен определяться как бинарный, поэтому исключаем все специальные символы по спецификации:
 * `\b` represents the backspace character `U+0008`
