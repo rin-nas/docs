@@ -1,5 +1,10 @@
 # Регулярные выражения
 
+## Диалекты
+
+* PCRE
+* JavaScript
+
 ## Методы обработки
 * Проверка соответствия (валидация): [`RegExp.test()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)
 * Поиск и захват подстрок: [`RegExp.exec()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec), [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match), [`String.search()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search)
@@ -28,9 +33,9 @@
 
 * https://regex101.com/r/r2ESLq/2/ Обработка многострочных комментариев в 2 раза эффективнее, чем `/\* .*? \*/`
 
-### Валидация пароля
+### Валидация качества пароля
 
-https://regex101.com/r/MOWCV3/9 
+Регулярное выражение: [PCRE](https://regex101.com/r/MOWCV3/9)
 
 Пароль должен соответствовать следующим требованиям:
 1. длина от 8 до 64 символов
