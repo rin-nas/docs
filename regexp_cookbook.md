@@ -44,14 +44,14 @@ https://regex101.com/r/MOWCV3/9
 
 ## Детектирование бинарных данных
 
-Ищем до первого найденного по рег. выражению `~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
+Ищем до первого найденного [управляющего символа](https://unicode-table.com/ru/#control-character) по регулярному выражению `~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
 
 [JSON](http://json.org/) не должен определяться как бинарный, поэтому исключаем все специальные символы по спецификации:
-* `\b` represents the backspace character (`U+0008`)
-* `\t` represents the character tabulation character (U+0009)
-* `\f` represents the form feed character (U+000C)
-* `\n` represents the line feed character (U+000A)
-* `\r` represents the carriage return character (U+000D)
+* `\b` represents the backspace character `U+0008`
+* `\t` represents the character tabulation character `U+0009`
+* `\f` represents the form feed character `U+000C`
+* `\n` represents the line feed character `U+000A`
+* `\r` represents the carriage return character `U+000D`
 
 
 * https://m.habr.com/post/429548/ - Плагин «Rainbow CSV» как альтернатива Excel
