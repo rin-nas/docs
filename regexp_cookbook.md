@@ -1,4 +1,4 @@
-# Регулярные выражения -- склад готовых решений
+# Регулярные выражения — склад готовых решений
 
 * https://regex101.com/r/eVEGRY/1/ Захват IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
 * https://regex101.com/r/JVzBz2/3 Захват тегов с учётом их парности без вложенных таких же тегов (PCRE)
@@ -25,14 +25,18 @@
 7. не имеют 6 и более подряд совпадающих символов типа "zzzzzz", "000000"
 8. не имеет 6 и более подряд "плохих" последовательностей типа "123456", "abcdef", "qwerty"
 
-Специальные символы по спецификации JSON (http://json.org/)
+## Детектирование бинарных данных
+
+`~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
+
+[JSON](http://json.org/) не должен определяться как бинарный, поэтому исключаем все специальные символы по спецификации:
 * \b represents the backspace character (U+0008)
 * \t represents the character tabulation character (U+0009)
 * \f represents the form feed character (U+000C)
 * \n represents the line feed character (U+000A)
 * \r represents the carriage return character (U+000D)
 
-Регулярное выражение для детектирования бинарных данных: `~[\x00-\x1f](?<![\x08\x09\x0c\x0a\x0d])~sSX`
+
 
 * https://m.habr.com/post/429548/ - Плагин «Rainbow CSV» как альтернатива Excel
 * https://m.habr.com/post/343116/ - Как я написал приложение, которое за 15 минут делало то же самое, что и регулярн...
