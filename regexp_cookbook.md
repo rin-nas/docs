@@ -22,15 +22,15 @@
 
 ### Полезняшки
 
-* [JS Fiddle](https://jsfiddle.net/zqta1481/14/). `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии
-* [JS Fiddle](https://jsfiddle.net/rea4sxgn/). Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS (TODO сделать форму ввода)
+* `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
+* Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS (TODO сделать форму ввода) [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
 
 ### Форматы
-* [PCRE](https://regex101.com/r/eVEGRY/1/) IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
+* IPv4 + IPv6 [PCRE](https://regex101.com/r/eVEGRY/1/). В PHP лучше применять готовый валидатор [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
 
 ### Захват html тегов
-* [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1) Захват тегов с учётом их парности без вложенных таких же тегов
-* [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1) Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно).
+* Захват тегов с учётом их парности без вложенных таких же тегов [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1)
+* Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно) [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1)
 
 ### Прочее
 * https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во множественном числе
