@@ -1,8 +1,8 @@
 # Регулярные выражения -- склад готовых решений
 
 * https://regex101.com/r/eVEGRY/1/ Захват IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
-* https://regex101.com/r/JVzBz2/3 Захват тегов с учётом их парности без вложенных таких же тагов (PCRE)
-* https://regex101.com/r/CvlwKz/1 Захват тегов с учётом их парности без вложенных таких же тагов (JS)
+* https://regex101.com/r/JVzBz2/3 Захват тегов с учётом их парности без вложенных таких же тегов (PCRE)
+* https://regex101.com/r/CvlwKz/1 Захват тегов с учётом их парности без вложенных таких же тегов (JS)
 * https://regex101.com/r/jwH6O2/4 Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно) (PCRE)
 * https://regex101.com/r/IVSo1x/1 Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно) (JS) http://jsfiddle.net/rea4sxgn/ -- генератор рег. выражения до заданной глубины рекурсии
 * https://jsfiddle.net/zqta1481/14/ Реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии
