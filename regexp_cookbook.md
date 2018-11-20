@@ -2,7 +2,7 @@
 
 ## Диалекты
 * PCRE
-* JavaScript (JS)
+* ECMA 262 (JavaScript, JS)
 
 ## Методы обработки
 * Проверка соответствия (валидация): [`RegExp.test()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test)
@@ -29,6 +29,8 @@
 ### Захват html тегов
 * [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1) Захват тегов с учётом их парности без вложенных таких же тегов
 * [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1) Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно).
+
+### Прочее
 * https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во множественном числе
 * https://regex101.com/r/iB63bg/2/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
 * https://regex101.com/r/GQ1xKK/14/ Проверка ФИО на русском или английском языке
