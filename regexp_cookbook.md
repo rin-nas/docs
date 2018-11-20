@@ -22,25 +22,25 @@
 
 ### Полезняшки
 
-* `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
-* Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS (TODO сделать форму ввода) [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
+* `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии: [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
+* Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS (TODO сделать форму ввода): [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
 
 ### Форматы
-* IPv4 + IPv6 [PCRE](https://regex101.com/r/eVEGRY/1/). В PHP лучше применять готовый валидатор [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
+* IPv4 + IPv6: [PCRE](https://regex101.com/r/eVEGRY/1/). В PHP лучше применять готовый валидатор [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
 
 ### Захват html тегов
-* Захват тегов с учётом их парности без вложенных таких же тегов [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1)
-* Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно) [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1)
+* Захват тегов с учётом их парности без вложенных таких же тегов: [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1)
+* Захват тегов с учётом их парности и вложенности друг в друга (рекурсивно): [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1)
 
 ### Прочее
-* https://regex101.com/r/GtF2QA/8/ Проверка слова на английском языке во множественном числе
-* https://regex101.com/r/iB63bg/2/ Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов)
-* https://regex101.com/r/GQ1xKK/14/ Проверка ФИО на русском или английском языке
-* https://regex101.com/r/WnauVT/6/ Проверка корректности даты в формате ГГГГ-ММ-ДД без проверки YYYY-02-29 в високосных годах (нужно доделать)
-* https://regex101.com/r/CcSugS/10 Детектирование SQL на модификацию данных
-* https://regex101.com/r/Q4dsL5/13 Валидация email
+* Проверка слова на английском языке во множественном числе: [PCRE](https://regex101.com/r/GtF2QA/8/)
+* Проверка регулярного выражения на диалект ECMA 262 (JavaScript) (есть проверка на уникальность флагов): [PCRE](https://regex101.com/r/iB63bg/2/)
+* Проверка ФИО на русском или английском языке: [PCRE](https://regex101.com/r/GQ1xKK/14/)
+* Проверка корректности даты в формате ГГГГ-ММ-ДД без проверки YYYY-02-29 в високосных годах (нужно доделать): [PCRE](https://regex101.com/r/WnauVT/6/)
+* Детектирование SQL на модификацию данных: [PCRE](https://regex101.com/r/CcSugS/10)
+* Валидация email: [PCRE](https://regex101.com/r/Q4dsL5/13)
 
-* https://regex101.com/r/r2ESLq/2/ Обработка многострочных комментариев в 2 раза эффективнее, чем `/\* .*? \*/`
+* Обработка многострочных комментариев в 2 раза эффективнее, чем `/\* .*? \*/`: [PCRE](https://regex101.com/r/r2ESLq/2/)
 
 ### Валидация качества пароля
 
