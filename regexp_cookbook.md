@@ -22,8 +22,8 @@
 
 ### Полезняшки
 
-* [JS Fiddle](https://jsfiddle.net/zqta1481/14/) Реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии
-* [JS Fiddle](https://jsfiddle.net/rea4sxgn/) Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS
+* [JS Fiddle](https://jsfiddle.net/zqta1481/14/). `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии
+* [JS Fiddle](https://jsfiddle.net/rea4sxgn/). Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS
 
 ### Форматы
 * [PCRE](https://regex101.com/r/eVEGRY/1/) IPv4 + IPv6. В PHP лучше применять готовый валидатор, см. [`filter_var()`](http://php.net/manual/en/function.filter-var.php)
