@@ -20,6 +20,10 @@
 
 ## Склад готовых решений
 
+Каждое регулярное выражение написано так, чтобы оно
+* работало максимально быстро
+* было читабельным и имело имело логические части
+
 ### Полезняшки
 
 * `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии: [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
