@@ -27,7 +27,7 @@
 ## Примеры кода
 
 ### SQL
-```
+```sql
 SELECT MAX("v3_response"."id")
 FROM "v3_response"
          JOIN "v3_resume" ON ("v3_resume"."id" = "v3_response"."resume_id")
@@ -61,7 +61,7 @@ GROUP BY "v3_resume"."person_id"
 
 SQL код выше был сгенерирован вот этим кодом на PHP:
 
-```
+```php
 $responseTable = DAO::v3_response()->getTable();
 $resumeTable   = DAO::v3_resume()->getTable();
 $vacancyTable  = DAO::v3_vacancy()->getTable();
