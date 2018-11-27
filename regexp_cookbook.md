@@ -39,6 +39,9 @@
 * `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии: [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
 * Генератор регулярного выражения до заданной глубины рекурсии для диалекта JS (TODO сделать форму ввода): [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
 
+* [`XRegExp`](htps://github.com/slevithan/xregexp) — библиотека, расширяющая стандартные возможности рег. выражений в JS до уровня PCRE.
+* [`regex101.com`](https://regex101.com/r/iB63bg/2/) — сервис для поиска и замены подстрок через регулярные выражения в диалектах PRCE, JS, Python, Golang.
+
 ### Форматы
 * Валидация IPv4 + IPv6: [PCRE](https://regex101.com/r/eVEGRY/1/), [link](https://stackoverflow.com/questions/4460586/javascript-regular-expression-to-check-for-ip-addresses/26445549#26445549). В языках программирования есть готовый валидатор: PHP —  [`filter_var()`](http://php.net/manual/en/function.filter-var.php), NodeJS — [`net.isIP()`](https://nodejs.org/api/net.html#net_net_isip_input).
 * Захват Email: [PCRE](https://regex101.com/r/Q4dsL5/13)
