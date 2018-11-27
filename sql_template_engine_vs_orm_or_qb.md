@@ -57,7 +57,7 @@ WHERE (("v3_response"."modified_date" >= '2018-11-26 00:00:00') AND
 GROUP BY "v3_resume"."person_id"
 ```
 
-### ORM
+### QueryBuilder
 
 SQL код выше был сгенерирован вот этим кодом на PHP:
 
