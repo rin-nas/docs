@@ -62,6 +62,8 @@ GROUP BY "v3_resume"."person_id"
 SQL код выше был сгенерирован вот этим кодом на PHP:
 
 ```php
+$start = Timestamp::create('-1 day')->toCustomFormat('Y-m-d 00:00:00');
+$stop  = Timestamp::create('-0 second')->toCustomFormat('Y-m-d 00:00:00');
 $responseTable = DAO::v3_response()->getTable();
 $resumeTable   = DAO::v3_resume()->getTable();
 $vacancyTable  = DAO::v3_vacancy()->getTable();
