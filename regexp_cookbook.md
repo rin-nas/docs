@@ -34,7 +34,7 @@
 ## Готовые функции
 
 * `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии: [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
-* Генератор регулярного выражения до заданной глубины рекурсии `(?R)` для диалекта JS (TODO сделать форму ввода): [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
+* Регулярные выражения диалекта JS пока не поддерживают рекурсию `(?R)`. Вот генератор регулярного выражения до заданной глубины рекурсии (TODO сделать форму ввода): [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
 
 ## Полезные ссылки
 
