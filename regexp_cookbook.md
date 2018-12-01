@@ -105,3 +105,4 @@
 * Форматы
 * https://m.habr.com/post/429548/ - Плагин «Rainbow CSV» как альтернатива Excel
 * https://m.habr.com/post/343116/ - Как я написал приложение, которое за 15 минут делало то же самое, что и регулярн...
+* https://www.regular-expressions.info/examplesprogrammer.html
