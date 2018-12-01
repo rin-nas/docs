@@ -1,8 +1,8 @@
 # Регулярные выражения
 
 ## Диалекты
-* [PCRE](http://www.pcre.org/current/doc/html/pcre2syntax.html) (применяется в PHP)
-* [ECMA 262](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) (применяется в JavaScript, JS)
+* [PCRE](http://www.pcre.org/current/doc/html/pcre2syntax.html), применяется в [PHP](http://php.net/) и др. ПО
+* [ECMA 262](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), применяется в [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (JS)
 * есть и [другие](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines), но в этом документе не рассматриваются
 
 ## Методы обработки
@@ -32,8 +32,8 @@
 4. Замените нежадные квантификаторы типа `.*?` на жадные. Но часть рег. выражения нужно будет немного переписать и усложнить ради увеличения скорости.
 
 ## Советы
-* Регулярные выражения PCRE пока поддерживают только фиксированный просмотр назад т.е. внутри `(?<!…)` нельзя использовать
-квантификаторы `?`, `*`, `+`. Но есть способ обойти это ограничение, используя [`\K`](http://www.pcre.org/current/doc/html/pcre2syntax.html#SEC11).
+* Регулярные выражения PCRE пока поддерживают только фиксированный просмотр назад. Т.е. внутри `(?<!…)` нельзя использовать
+квантификаторы `?`, `*`, `+`, `{…,…}`. Но есть способ обойти это ограничение, используя [`\K`](http://www.pcre.org/current/doc/html/pcre2syntax.html#SEC11).
 
 ## Готовые функции
 
