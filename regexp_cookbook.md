@@ -34,11 +34,11 @@
 ## Советы
 1. Регулярные выражения PCRE пока поддерживают только фиксированный просмотр назад. Т.е. внутри `(?<!…)` нельзя использовать
 квантификаторы `?`, `*`, `+`, `{…,…}`. Но есть способ обойти это ограничение, используя [`\K`](http://www.pcre.org/current/doc/html/pcre2syntax.html#SEC11).
-2. Регулярные выражения JS пока не поддерживают всех возможностей PCRE, есть готовые решения
-  * Библиотека [`XRegExp`](https://github.com/slevithan/xregexp), которая расширяет стандартные возможности рег. выражений в JS до уровня PCRE.
-  * `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии: [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
-  * Регулярные выражения диалекта JS пока не поддерживают рекурсию `(?R)`. Вот генератор регулярного выражения до заданной глубины рекурсии (TODO сделать форму ввода): [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
-3. Для написания и тестирования ваших регурярных выражений, а так же для поиска и замены подстрок через регулярные выражения в диалектах PRCE, JS, Python, Golang используйте сервис [`regex101.com`](https://regex101.com/r/iB63bg/2/).
+2. Регулярные выражения JS пока не поддерживают всех возможностей PCRE, но есть готовые решения:
+    * Библиотека [`XRegExp`](https://github.com/slevithan/xregexp), которая расширяет стандартные возможности рег. выражений в JS до уровня PCRE.
+    * `String.prototype.matchRecursive()` — реализация JavaScript метода [`String.match()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) с учётом рекурсии: [JS Fiddle](https://jsfiddle.net/zqta1481/14/)
+    * Генератор регулярного выражения до заданной глубины рекурсии `(?R)` (TODO сделать форму ввода): [JS Fiddle](https://jsfiddle.net/rea4sxgn/)
+3. Используйте сервис [`regex101.com`](https://regex101.com/r/iB63bg/2/) для написания и тестирования ваших регурярных выражений, а так же для поиска и замены подстрок через регулярные выражения в диалектах PRCE, JS, Python, Golang.
 
 
 ## Склад готовых регулярных выражений
