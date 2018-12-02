@@ -54,7 +54,7 @@
 * Захват многострочных комментариев (в 2 раза эффективнее, чем `/\* .*? \*/`): [PCRE](https://regex101.com/r/r2ESLq/2/)
 
 ### HTML
-* Захват html сущностей: [PCRE](https://regex101.com/r/xhNZc5/1/) (strict)
+* Захват [xml и html сущностей](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references): [PCRE](https://regex101.com/r/xhNZc5/1/) (strict)
 * Захват заданных html тегов с учётом их парности без вложенных таких же тегов: [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1)
 * Захват заданных html тегов с учётом их парности и вложенности друг в друга (рекурсивно): [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1)
 
@@ -103,3 +103,8 @@
 * https://m.habr.com/post/429548/ - Плагин «Rainbow CSV» как альтернатива Excel
 * https://m.habr.com/post/343116/ - Как я написал приложение, которое за 15 минут делало то же самое, что и регулярн...
 * https://www.regular-expressions.info/examplesprogrammer.html
+* https://github.com/dukei/any-balance-providers/blob/master/modules/ab/source/vendor/string.js
+  https://html.spec.whatwg.org/multipage/named-characters.html 
+  https://stackoverflow.com/questions/15532252/why-is-reg-being-rendered-as-without-the-bounding-semicolon
+  https://regex101.com/r/xhNZc5/2/
+  
