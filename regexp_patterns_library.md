@@ -3,7 +3,7 @@
 ## Диалекты
 * [PCRE](http://www.pcre.org/current/doc/html/pcre2syntax.html), применяется в [PHP](http://php.net/) и др. ПО
 * [ECMA 262](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), применяется в [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (JS)
-* есть и [другие](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines), но в этом документе не рассматриваются
+* есть и [другие](https://en.wikipedia.org/wiki/Comparison_of_regular_expression_engines) достойные внимания, но в этом документе не рассматриваются
 
 ## Методы обработки
 Метод обработки|JavaScript|PHP
@@ -45,7 +45,7 @@
 
 Каждое регулярное выражение написано так, чтобы оно
 * работало максимально быстро (по советам выше)
-* было читабельным с выделением логических частей (используется флаг `/x`)
+* было читабельным с выделением логических частей (используется флаг `/x`) и описанием в комментариях (`#`)
 
 ### Форматы
 * Валидация IPv4 + IPv6: [PCRE](https://regex101.com/r/eVEGRY/1/), [link](https://stackoverflow.com/questions/4460586/javascript-regular-expression-to-check-for-ip-addresses/26445549#26445549). В языках программирования есть готовый валидатор: PHP —  [`filter_var()`](http://php.net/manual/en/function.filter-var.php), NodeJS — [`net.isIP()`](https://nodejs.org/api/net.html#net_net_isip_input).
@@ -58,6 +58,7 @@
 См. так же список именованных сущностей в [JSON](https://www.w3.org/TR/html5/entities.json).
 * Захват заданных html тегов с учётом их парности без вложенных таких же тегов: [PCRE](https://regex101.com/r/JVzBz2/3), [JS](https://regex101.com/r/CvlwKz/1)
 * Захват заданных html тегов с учётом их парности и вложенности друг в друга (рекурсивно): [PCRE](https://regex101.com/r/jwH6O2/4), [JS](https://regex101.com/r/IVSo1x/1)
+* Вставляет теги `</li>` там, где они пропущены (чинит некорректную вложенность тегов `<li>`): [PCRE](https://regex101.com/r/PFEWtT/6/)
 
 ### Обработка естественного языка
 * Валидация слова на английском языке во множественном числе: [PCRE](https://regex101.com/r/GtF2QA/8/)
@@ -66,6 +67,7 @@
 ### Прочее
 * Валидация (неполная, но быстрая) регулярного выражения на диалект ECMA 262 (JavaScript), есть проверка на уникальность флагов: [PCRE](https://regex101.com/r/iB63bg/3/)
 * Детектирование SQL на модификацию данных: [PCRE](https://regex101.com/r/CcSugS/13)
+
 
 ### Валидация качества пароля
 
