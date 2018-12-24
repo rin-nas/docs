@@ -47,6 +47,18 @@
 * работало максимально быстро (по советам выше)
 * было читабельным с выделением логических частей (используется флаг `/x`) и описанием в комментариях (`#`)
 
+### Числа
+* Целые: `/^-?+\d++$/sSX`
+* Целые и десятичные: `/^-?+\d++(?>\.\d+)?$/sSX`
+* Денежный формат: `/^-?+\d++(?>\.\d{1,2})?$/sSX`
+
+## Дата и время
+
+# без валидации
+* Дата в формате `YYYY-MM-DD`: `/^\d{4}-\d{2}-\d{2}$/sSX`
+* Время в формате `hh:ii:ss`: `/^\d{2}:\d{2}(:\d{2})?$/sSX`
+
+
 ### Форматы
 * Валидация IPv4 + IPv6: [PCRE](https://regex101.com/r/eVEGRY/1/), [link](https://stackoverflow.com/questions/4460586/javascript-regular-expression-to-check-for-ip-addresses/26445549#26445549). В языках программирования есть готовый валидатор: PHP —  [`filter_var()`](http://php.net/manual/en/function.filter-var.php), NodeJS — [`net.isIP()`](https://nodejs.org/api/net.html#net_net_isip_input).
 * Захват Email из текста: [PCRE](https://regex101.com/r/Q4dsL5/13)
