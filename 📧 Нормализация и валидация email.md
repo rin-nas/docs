@@ -10,7 +10,7 @@ Email в верхнем и нижнем регистре считаются од
 Некоторые почтовые системы позволяют иметь псевдонимы для имени пользователя:
 
 1.  Gmail позволяет в любом месте имени пользователя вставлять точки, которые потом игнорируются ([ivan.petrov@gmail.com](mailto:ivan.petrov@gmail.com) => i[vanpetrov@gmail.com](mailto:vanpetrov@gmail.com)). Поддерживается плюс-адресация, которая позволяет пользователям регистрироваться в различных сервисах ([ivan.petrov+facebook@gmail.com](mailto:ivan.petrov+facebook@gmail.com) = [ivanpetrov@gmail.com](mailto:ivanpetrov@gmail.com))
-2.  Яндекс [считает](https://habrahabr.ru/company/yandex/blog/56866/) символы дефиса и точки одинаковыми ([ivan.petrov@yandex.ru](mailto:ivan.petrov@yandex.ru) = [ivan-petrov@yandex.ru](mailto:ivan-petrov@yandex.ru))
+2.  Яндекс [считает](https://habrahabr.ru/company/yandex/blog/56866/) символы дефиса и точки одинаковыми ([ivan.petrov@yandex.ru](mailto:ivan.petrov@yandex.ru) = [ivan-petrov@yandex.ru](mailto:ivan-petrov@yandex.ru)). Плюс-адресация тоже поддерживается. 
 
 На практике email валидируют и сохраняют в БД в исходном виде без нормализации (приведения к каноническому виду).
 
