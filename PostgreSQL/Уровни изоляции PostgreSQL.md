@@ -13,7 +13,7 @@
 
 `*` — внутри [обобщённых табличных выражений (CTE = Common Table Expressions)](https://postgrespro.ru/docs/postgresql/current/queries-with) на каждый именованный запрос может быть своя область видимости снимка данных
 
-# Примеры ошибок read commited
+## Примеры ошибок read commited
 
 <table>
   <tr>
@@ -62,7 +62,7 @@
   </tr>
 </table>
 
-# Примеры ошибок repeatable read
+## Примеры ошибок repeatable read
 
 <table>
   <tr>
@@ -94,6 +94,11 @@
   </tr>
 </table>
 
+## Рекомендации по предотвращению проблем
+
+1. Заменить умолчательный уровень Read commited на Repeatable read.
+1. В сложных случаях [выполнять транзакции с уровнем Serializable](https://postgrespro.ru/docs/postgresql/current/sql-start-transaction).
+1. Для увеличения производительности использовать [рекомендательные блокировки](https://postgrespro.ru/docs/postgrespro/current/explicit-locking#ADVISORY-LOCKS).
 
 ## Ссылки по теме
 
