@@ -196,7 +196,7 @@ https://postgrespro.ru/docs/postgresql/18/errcodes-appendix
   <tr>
     <td>11</td>
     <td>План SQL запроса</td>
-    <td>Результат команды <code>EXPLAIN (ANALYZE, BUFFERS)</code></td>
+    <td>Результат выполнения команды <code>EXPLAIN (ANALYZE, BUFFERS)</code></td>
   </tr>
   <tr>
     <td>12</td>
