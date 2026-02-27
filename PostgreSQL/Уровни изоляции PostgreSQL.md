@@ -40,9 +40,14 @@
     </td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>
+      <p>Таблица <code>balance(user_id, acc_no, amt, flag)=[(1,1,99,false),[1,2,100,false])</code></p>
+      <p>Транзакция 1: <code>update balance set amt=amt+1 where user_id=1</code></p>
+      <p>Транзакция 2: <code>update balance set flag=<strong>true</strong> where user_id=1 and amt=100</code></p>
+    </td>
+    <td><code>balance(user_id, acc_no, amt, flag)=[(1,1,100,<strong>false</strong>),[1,2,101,<strong>false</strong>])</code></td>
+    <td>Потому что в при изменении данных при поиске подходящих строк сначала читаются старые значения и используются в вычислении условия, 
+      а потом, непосредственно при обновлении, <ins>после получения блокировки</ins>, условия перепроверяются: первая строка пропущена, потому что прочитано 99, а вторая — потому что после получения блокировки она уже 101</td>
     <td></td>
   </tr>
   <tr>
