@@ -238,8 +238,8 @@ https://postgrespro.ru/docs/postgresql/18/errcodes-appendix
 5. pg_replication_slots — список слотов репликации
 6. pg_stat_replication — список ведомых серверов
 7. pg_stat_statements — различные запросы по потреблению ресурсов
-   * длительность выполнения 1-го запроса: `select sum(tital_time) / sum(calls) from pg_stat_statements`. Из `pg_stat_statements` косвенно можно узнать профиль нагрузки — OLTP, OLAP</td>
-
+   * длительность выполнения 1-го запроса: `select sum(tital_time) / sum(calls) from pg_stat_statements`. Из `pg_stat_statements` косвенно можно узнать профиль нагрузки — OLTP, OLAP
+    </td>
   </tr>
   <tr>
     <td>3</td>
@@ -252,7 +252,69 @@ https://postgrespro.ru/docs/postgresql/18/errcodes-appendix
 1. сеть и IP адреса
 1. процессы пользователя postgres
 1. список прослушиваемых портов для пользователя postgres
+    </td>
+  </tr>
+</table>
 
+
+### История потребления ресурсов прикладного ПО и ОС (на проблемном узле)
+
+Протоколы и снимки экранов с графиками.\
+На графиках временной срез должен включать 3 интервала времени:
+
+1. до возникновения проблемы (помогает понять нагрузку системы в штатном режиме)
+1. наличие проблемы (на графиках увидим всплески или провалы)
+1. после возникновения проблемы (проблема решилась? когда и как именно?)
+
+<table>
+  <tr>
+    <th>№</th>
+    <th>Атрибуты</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Протоколы (логи) работы ОС</td>
+    <td>Например, в <code>/var/log/messges</code> смотрим записи от OOM-killer, сетевых дисков</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Протоколы (логи) работы прикладного ПО</td>
+    <td>
+<code>/var/log/haproxy
+/var/log/pgbouncer
+/var/log/patroni
+/var/log/psql
+/var/log/etcd
+</code>
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Графики потребления ресурсов ОС</td>
+    <td>
+Взять из системы мониторинга. В процентах и абсолютные значения.
+        
+1. утилизация CPU
+1. утилизация памяти
+1. утилизация дисков
+1. свободное место
+1. нагрузка на сеть
+    </td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Графики потребления ресурсов СУБД</td>
+    <td>
+Взять из системы мониторинга. В процентах и абсолютные значения.
+
+1. График с кол-вом подключений к СУБД
+   * отдельно по статусам: active, idle, idle in transaction
+2. График с кол-вом успешных запросов (TPS, QPS) и ошибок в СУБД
+   * TPS, QPS — pg_stat_database, pg_stat_statements
+   * TPS = sum(commits + rollbacks)
+   * QPS = sum(calls)
+   * Кол-во ошибок = select sum(xact_rollback) from pg_stat_database
     </td>
   </tr>
 </table>
