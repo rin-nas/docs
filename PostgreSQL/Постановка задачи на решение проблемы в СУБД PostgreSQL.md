@@ -651,7 +651,7 @@ https://postgrespro.ru/docs/postgresql/18/bug-reporting
   </tr>
   <tr>
     <td>1</td>
-    <td>Ссылки на MR с правками исходного кода</td>
+    <td>Ссылки на MR (Merge Request) с правками исходного кода</td>
     <td></td>
   </tr>
   <tr>
