@@ -234,6 +234,7 @@ https://postgrespro.ru/docs/postgresql/18/errcodes-appendix
   </tr>
 </table>
 
+
 ### 3. Текущая информация о СУБД и ОС (на проблемном узле)
 
 Получение информации можно и нужно автоматизировать до запуска одного bash скрипта на стороне клиента!
@@ -245,16 +246,19 @@ https://postgrespro.ru/docs/postgresql/18/errcodes-appendix
   <tr>
     <th>№</th>
     <th>Атрибуты</th>
+    <th>Обязательность</th>
     <th>Описание</th>
   </tr>
   <tr>
     <td>1</td>
     <td>Основная информация о СУБД</td>
+    <td>$\textcolor{red}{Обязательно}$</td>
     <td>psql: <code>select version(), pg_is_in_recovery() \gx</code></td>
   </tr>
   <tr>
     <td>2</td>
     <td>Дополнительная информация о СУБД</td>
+    <td>При необходимости</td>
     <td>
 
 1. pg_settings — текущие конфигурационные параметры
@@ -273,6 +277,7 @@ https://postgrespro.ru/docs/postgresql/18/errcodes-appendix
   <tr>
     <td>3</td>
     <td>Информация о ресурсах ОС</td>
+    <td>При необходимости</td>
     <td>
 
 1. CPU
