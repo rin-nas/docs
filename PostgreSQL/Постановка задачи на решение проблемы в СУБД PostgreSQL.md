@@ -681,6 +681,7 @@ https://postgrespro.ru/docs/postgresql/18/bug-reporting
 
 ## Ссылки по теме
 
+* [Вендорская техническая поддержка СУБД Postgres Pro и PostgreSQL](https://postgrespro.ru/services/support)
 * [Основы мониторинга PostgreSQL](https://habr.com/ru/articles/486710/). Алексей Лесовский (2020)
 * [Поиск и устранение проблем в Postgres с помощью pgCenter](https://habr.com/ru/articles/494162/). Алексей Лесовский (2019)
 
