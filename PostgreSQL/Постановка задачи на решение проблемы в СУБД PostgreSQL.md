@@ -737,7 +737,7 @@ https://postgrespro.ru/docs/postgresql/18/bug-reporting
 ## Ссылки по теме
 
 * [Вендорская техническая поддержка СУБД Postgres Pro и PostgreSQL](https://postgrespro.ru/services/support)
-* [Вендорская техническая поддержка СУБД Oracle](https://support.oracle.com/knowledgefs/?docId=MC1)
+* [Вендорская техническая поддержка СУБД Oracle](https://support.oracle.com/knowledgefs/?docId=MC1) (My Oracle Support)
 
 ## Заметки
 
