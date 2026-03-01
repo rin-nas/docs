@@ -98,8 +98,9 @@
 
 ## Рекомендации по предотвращению проблем
 
-1. Заменить умолчательный уровень Read commited на Repeatable read.
-1. В сложных случаях [выполнять транзакции с уровнем Serializable](https://postgrespro.ru/docs/postgresql/current/sql-start-transaction).
+1. Тестировать корректность работы транзакций в параллельном режиме через `pgbench`.
+1. Заменить умолчательный уровень `Read commited` на `Repeatable read`.
+1. В сложных случаях [выполнять транзакции с уровнем `Serializable`](https://postgrespro.ru/docs/postgresql/current/sql-start-transaction).
 1. Для увеличения производительности вместо явных блокировок `for share / for update` использовать [рекомендательные блокировки](https://postgrespro.ru/docs/postgrespro/current/explicit-locking#ADVISORY-LOCKS).
 
 ## Ссылки по теме
