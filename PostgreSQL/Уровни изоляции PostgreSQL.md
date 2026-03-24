@@ -106,3 +106,4 @@
 ## Ссылки по теме
 
 1. [Уровни изоляции транзакций с примерами на PostgreSQL](https://habr.com/ru/articles/317884/)
+1. [Язык SQL. Лекция 7. Транзакции (Е. П. Моргунов)](https://edu.postgrespro.ru/sqlprimer/sqlprimer-2019-msu-07.pdf)
