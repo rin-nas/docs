@@ -13,7 +13,7 @@
 `{schema}`, `{table}`, `{ref_table}`, `{column}`, `{role_old}`, `{role_new}` — это шаблоны названий (схемы, таблицы, связанной таблицы, колонки, роли новой, роли старой), вместо которых нужно подставить настоящие названия.
 
 > [!CAUTION]
-> Формат хранения данных в БД никак не должен зависеть от вида отображаемых данных и способа их ввода в клиентском ПО (браузер, моб. приложение и др.)! Например, номер телефона в макете дизайна (не) может содержать пробелы или знаки подчёркивания. Но в БД его формат номера телефона должен быть строго единым. Дизайн может поменяться, а данные в БД будут продолжать храниться годами. Для гарантии единого формата используйте валидацию на уровне БД: выражение CHECK() или домены.
+> Формат хранения данных в БД никак не должен зависеть от вида отображаемых данных и способа их ввода в клиентском ПО (браузер, моб. приложение и др.)! Например, номер телефона в макете дизайна (не) может содержать пробелы или знаки подчёркивания. Но в БД [формат номера телефона](//github.com/rin-nas/docs/blob/master/%E2%98%8E%20%D0%9D%D0%BE%D1%80%D0%BC%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B8%20%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BD%D0%BE%D0%BC%D0%B5%D1%80%D0%B0%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B0.md) должен быть строго единым. Дизайн может поменяться, а данные в БД будут продолжать храниться годами. Для гарантии единого формата используйте валидацию на уровне БД: выражение CHECK() или домены.
 
 > [!TIP]
 > Какое значение по умолчанию лучше использовать для необязательных полей — NULL или пустую строку / 0 / пустой массив?
@@ -22,7 +22,7 @@
 > В PHP в параметрах методов или возвращаемых значениях методов nullable тип `?string / ?int / ?array` выглядит понятнее, чем без знака вопроса.
 
 > [!WARNING]
-> Почему в изменении БД опасно использовать синтаксис CREATE TABLE IF NOT EXISTS {table}?
+> Почему в изменении БД опасно использовать синтаксис `CREATE TABLE IF NOT EXISTS {table}`?
 > Если в процессе разработки вы измените схему данных таблицы, то SQL запрос на создание таблицы будет проигнорирован, если такая таблица уже существует. Дальнейшее тестирование таблицы с устаревшей структурой будет некорректным. А если такое тестирование будет успешным, есть риск отправить в производственную среду нерабочее решение. Поэтому лучше всего делать так:
 > 1. Удалить таблицу, если она существует
 > 1. Создать таблицу
@@ -190,3 +190,183 @@ INSERT INTO {table} ({column1}, {column2}, ...) VALUES
 (...), 
 (...);
 ```
+
+См. так же видео доклад Ивана Фролкова "[Constraints или о том, как попытаться спокойно жить](https://pgconf.ru/talk/1588945)".
+
+## Уникальные индексы
+
+Уникальные индексы в PostgreSQL можно сделать только в Btree. В таблице должен быть хотя бы 1 уникальный ключ (PRIMARY/UNIQUE KEY), он понадобится для логической репликации.
+
+```sql
+-- для уникальности email (https://en.wikipedia.org/wiki/Email_address)
+CREATE UNIQUE INDEX {table}_email_uniq ON {table} (email) WHERE deleted_at IS NULL; --условие только при наличии поля deleted_at
+ 
+-- для уникальности поля с типом TEXT
+-- такой индекс нужен во всех справочниках
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (lower({column})) WHERE deleted_at IS NULL;
+ 
+-- для уникальности поля с типом TEXT в дереве только в дочерних записях
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (lower({column}), tree_path_ids) WHERE deleted_at IS NULL; -- если в конце tree_path_ids нет id записи (правильный подход)
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (lower({column}), subpath(tree_path_ids, 0, -1)) WHERE deleted_at IS NULL; -- если в конце tree_path_ids есть id записи (обычно это неправильный подход)
+ 
+-- для уникальности поля с типом TEXT в дереве только на одном уровне иерархии
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (lower({column}), nlevel(tree_path_ids)) WHERE deleted_at IS NULL;
+ 
+-- для уникальности поля с типом TEXT
+-- md5, приведённый к типу uuid занимает 16 байт вместо 32 байт
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (cast(md5(lower({column})) as uuid)) WHERE deleted_at IS NULL;
+ 
+-- для уникальности поля с типом TEXT
+-- в этом индексе будут учитываться слова (буквы, цифры, дефис, точки с цифрами) и их позиции в тексте, 
+-- но не будет учитываться регистр слов и любые другие символы
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (cast(md5(cast(to_tsvector('simple', {column}) as text)) as uuid)) WHERE deleted_at IS NULL;
+-- select to_tsvector('simple', ' @а+(б-в), $в_б #а!кк-1.2.3&1-2'); -- результат: '-2':11 '1':10 '1.2.3':9 'а':1,7 'б':3,6 'б-в':2 'в':4,5 'кк':8 
+ 
+-- для уникальности нескольких полей с типом TEXT 
+-- в этом индексе будут учитываться слова (буквы, цифры, дефис) и их позиции в тексте, 
+-- но не будет учитываться регистр слов и любые другие символы
+CREATE UNIQUE INDEX {table}_complex_uniq ON {table} (
+    {column1}, -- поле с типом int
+    cast(md5(
+        coalesce(trim(regexp_replace(lower({column2}), '[^[:lower:]\d\-]+', ' ', 'g')), '') -- поле с типом text
+        || E'\n' ||
+        coalesce(trim(regexp_replace(lower({column3}), '[^[:lower:]\d\-]+', ' ', 'g')), '') -- поле с типом text
+    ) as uuid)
+) WHERE deleted_at IS NULL;
+ 
+-- для уникальности поля с типом JSONB
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (cast(md5(lower(cast({column} as text))) as uuid)) WHERE deleted_at IS NULL;
+ 
+-- для уникальности поля с типом ARRAY
+CREATE UNIQUE INDEX {table}_{column}_uniq ON {table} (sort(uniq({column}))) WHERE deleted_at IS NULL;
+```
+
+См. так же видео доклад Ивана Фролкова "[Constraints или о том, как попытаться спокойно жить](https://pgconf.ru/talk/1588945)".
+
+## Неуникальные индексы
+
+### Btree
+
+Подходит для полей с разными скалярными типами, включая внешние ключи, которые оканчиваются на _id
+
+```sql
+CREATE INDEX {table}_{column} ON {table} ({column}) 
+    --обязательно добавьте условие, если ожидается > 5% NULL значений 
+    --и если запросов с условием `WHERE {column} IS NULL` будет мало и им можно выполняться медленно
+    --так размер индекса уменьшится на эти проценты, см. https://habr.com/ru/company/otus/blog/672102/
+    WHERE {column} IS NOT NULL;
+```
+
+### GIN
+
+1. GIN хорошо подходит для большого количества повторяющихся значений. GIN индексы обычно получаются в несколько раз компактнее, чем Btree. В PostgreSQL до версии 14 в 5-20 раз компактнее, в версии 14+ только в 3 раза.
+1. GIN может быть эффективным на несколько (особенно много) колонок, где выборка может быть по любым полям в любых комбинациях (параметрический поиск), т.к. BitMapOr и BitMapAnd у него встроенные.
+1. GIN применяется для ускорения выборки из массивов и [tsvector](https://postgrespro.ru/docs/postgresql/current/textsearch-tables#TEXTSEARCH-TABLES-INDEX) ([FTS](https://postgrespro.ru/docs/postgresql/current/textsearch-indexes))
+1. GIN не рекомендуется для внешних ключей (здесь он работает медленнее, чем btree)
+
+```sql
+CREATE INDEX {table}_{column} ON {table} USING gin (lower({column}) gin_trgm_ops); -- для полей с типом TEXT для поиска по LIKE '%text%' без учёта регистра символов
+ 
+CREATE INDEX {table}_{column} ON {table} USING gin ({column}); -- для массивов
+```
+
+### GIST
+
+Geometry index, spatial index, range index, [ltree](https://postgrespro.ru/docs/postgresql/current/ltree#id-1.11.7.30.6).
+Для [FTS]([url](https://postgrespro.ru/docs/postgresql/current/textsearch-indexes)) этот индекс не подходит, т.к. может сильно "распухнуть" со временем.
+
+```sql
+CREATE INDEX {table}_{column} ON {table} USING gist (coordinates);
+CREATE INDEX {table}_{column} ON {table} USING gist (point(longitute, latitude)); -- old school, see "coordinates" field
+CREATE INDEX {table}_{column} ON {table} USING gist (tree_path_ids);
+```
+
+Примеры:
+1. [Как вычислить дистанцию между 2-мя точками на Земле по её поверхности в километрах?](https://github.com/rin-nas/postgresql-patterns-library?tab=readme-ov-file#%D0%BA%D0%B0%D0%BA-%D0%B2%D1%8B%D1%87%D0%B8%D1%81%D0%BB%D0%B8%D1%82%D1%8C-%D0%B4%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8E-%D0%BC%D0%B5%D0%B6%D0%B4%D1%83-2-%D0%BC%D1%8F-%D1%82%D0%BE%D1%87%D0%BA%D0%B0%D0%BC%D0%B8-%D0%BD%D0%B0-%D0%B7%D0%B5%D0%BC%D0%BB%D0%B5-%D0%BF%D0%BE-%D0%B5%D1%91-%D0%BF%D0%BE%D0%B2%D0%B5%D1%80%D1%85%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%B2-%D0%BA%D0%B8%D0%BB%D0%BE%D0%BC%D0%B5%D1%82%D1%80%D0%B0%D1%85)
+1. [Как найти ближайшие населённые пункты относительно заданных координат?](https://github.com/rin-nas/postgresql-patterns-library?tab=readme-ov-file#%D0%BA%D0%B0%D0%BA-%D0%BD%D0%B0%D0%B9%D1%82%D0%B8-%D0%B1%D0%BB%D0%B8%D0%B6%D0%B0%D0%B9%D1%88%D0%B8%D0%B5-%D0%BD%D0%B0%D1%81%D0%B5%D0%BB%D1%91%D0%BD%D0%BD%D1%8B%D0%B5-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D1%8B-%D0%BE%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85-%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82)
+
+### Hash
+
+Хеш-индексы работают только с условием равенства. Составные и уникальные индексы не поддерживаются (TODO - есть возможность сделать ограничение уникальности). По сравнению с Btree, занимают меньше места и работают быстрее (на сколько же процентов, на сколько занимают меньше места). Чем длиннее строка, тем больше выигрыш по размеру и скорости, по сравнению с Btree. Экономия по размеру индекса будет при средней длине хранимых значений > 4 байт, т.к. на хранение хеша каждого значения в индексе нужно 4 байта. Для коротких строк длиной < 8 байт универсальнее использовать Btree.
+
+Подходит для индексирования текстовых колонок, например `url`, `email`, `hash (guid, uuid)`.
+
+Совет: хеш md5 целесообразно хранить в поле с типом uuid, который занимает 16 байт вместо 32 байт.
+
+```sql
+CREATE INDEX {table}_{column} ON {table} USING hash ({column});
+```
+
+## Триггеры и функции (процедуры)
+
+> [!CAUTION]
+> Внимание!
+> После создания или изменения функции (процедуры) в коде изменения БД необходимо обязательно убедиться, что она исправно работает!
+> 1. Для запуска триггерной функции необходимо создать, обновить или удалить запись так, чтобы функция была вызвана.
+> 1. Для запуска обычной функции выполните `SELECT func_name({param})`
+
+### Автоматически обновляемое поле updated_at
+
+См. [Как сделать автоматически обновляемое поле updated_at?](https://github.com/rin-nas/postgresql-patterns-library/blob/master/README.md#%D0%9A%D0%B0%D0%BA-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8-%D0%BE%D0%B1%D0%BD%D0%BE%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%D0%BE%D0%B5-%D0%BF%D0%BE%D0%BB%D0%B5-updated_at)
+
+### Обновление версии таблицы-справочника
+
+```sql
+-- при создании нового справочника необходимо добавить триггер
+CREATE OR REPLACE FUNCTION dictionary_version_incr() RETURNS TRIGGER LANGUAGE plpgsql AS
+$$
+BEGIN
+	-- обновляем только в случае настоящих изменений в данных
+    IF (TG_OP != 'UPDATE' OR NEW IS DISTINCT FROM OLD) THEN
+        UPDATE dictionary_version SET version = version + 1 WHERE table_name = TG_TABLE_NAME;
+    END IF;
+	
+	IF (TG_OP = 'DELETE') THEN
+		RETURN OLD;
+	ELSE
+		RETURN NEW;
+	END IF;
+END;
+$$;
+ 
+CREATE TRIGGER {table}_version AFTER INSERT OR UPDATE OR DELETE ON {table} EXECUTE PROCEDURE dictionary_version_incr();
+```
+
+### Сохранение истории изменения записей в таблице-журнале
+
+См. [Как сделать журналирование изменений таблицы?](https://github.com/rin-nas/postgresql-patterns-library/blob/master/README.md#%D0%BA%D0%B0%D0%BA-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B9-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B)
+
+### Проверка запрещённых действий при изменении записи (пример)
+
+**Накат**
+
+```sql
+CREATE OR REPLACE FUNCTION {table}_update_check() RETURNS TRIGGER LANGUAGE plpgsql AS
+$$
+BEGIN
+    IF NEW.id         IS DISTINCT FROM OLD.id OR
+       NEW.created_at IS DISTINCT FROM OLD.created_at OR
+       NEW.created_person_id IS DISTINCT FROM OLD.created_person_id OR
+       NEW.tariff_id  IS DISTINCT FROM OLD.tariff_id OR
+       NEW.person_id  IS DISTINCT FROM OLD.person_id THEN
+        RAISE EXCEPTION 'Ошибка: в таблице tariff_quota_limits нельзя изменять поля id, created_at, created_person_id, tariff_id, person_id';
+    END IF;
+ 
+    RETURN NEW;
+END;
+$$;
+ 
+CREATE TRIGGER {table}_update_check
+    BEFORE UPDATE ON {table}
+    FOR EACH ROW
+    WHEN (OLD.* IS DISTINCT FROM NEW.*)
+EXECUTE PROCEDURE {table}_update_check();
+```
+
+**Откат**
+
+```sql
+DROP TRIGGER IF EXISTS {table}_update_check ON {table};
+DROP FUNCTION IF EXISTS {table}_update_check();
+```
+
