@@ -64,7 +64,7 @@ done
 
 for file in *.tgz; do
     echo "Перепаковка: $file"
-    gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.tgz}.xz"
+    gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.tgz}.tar.xz"
 done
 ```
 
