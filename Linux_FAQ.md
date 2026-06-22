@@ -41,7 +41,7 @@ ps -e -orss=,args= \
 ## Как скопировать файл между Windows и Linux без WinSCP?
 
 Выполнить на Windows
-```
+```powershell
 # Windows -> Linux
 # способ 1
 pscp -pwfile pwfile C:\temp\filename.txt user@host:
@@ -51,6 +51,16 @@ filename.txt"
 
 # Windows <- Linux
 pscp user@host:/tmp/filename.txt C:\temp\filename.txt
+```
+
+## Как в текущей папке перепаковать файлы из `*.gz` в `*.xz` с максимальной компрессией?
+
+Файл `recompress.sh`:
+```bash
+for file in *.gz; do
+    echo "Перепаковка: $file"
+    gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.gz}.xz"
+done
 ```
 
 ## Генератор паролей
