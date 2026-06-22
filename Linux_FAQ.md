@@ -61,6 +61,11 @@ for file in *.gz; do
     echo "Перепаковка: $file"
     gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.gz}.xz"
 done
+
+for file in *.tgz; do
+    echo "Перепаковка: $file"
+    gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.tgz}.xz"
+done
 ```
 
 ## Генератор паролей
