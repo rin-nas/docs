@@ -57,14 +57,11 @@ pscp user@host:/tmp/filename.txt C:\temp\filename.txt
 
 Файл `recompress.sh`:
 ```bash
-for file in *.gz; do
-    echo "Перепаковка: $file"
-    gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.gz}.xz"
-done
-
-for file in *.tgz; do
-    echo "Перепаковка: $file"
-    gunzip -c "$file" | xz -T0 -9 -e -v -c > "${file%.tgz}.tar.xz"
+for FILE in *{.tar.gz,.tgz}; do
+    echo "Перепаковка: $FILE"
+    FILE_TMP=${FILE%.tar.gz}
+    FILE_TMP=${FILE_TMP%.tgz}
+    gzip -d -v -k -f $FILE && xz -T0 -9 -e -v $FILE_TMP.tar && rm $FILE
 done
 ```
 
