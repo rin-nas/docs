@@ -61,7 +61,7 @@ for FILE in *{.tar.gz,.tgz}; do
     echo "Перепаковка: $FILE"
     FILE_TMP=${FILE%.tar.gz}
     FILE_TMP=${FILE_TMP%.tgz}
-    gzip -d -v -k -f $FILE && xz -T0 -9 -e -v $FILE_TMP.tar && rm $FILE
+    gzip -d -v -k -f $FILE && xz -T0 -9 -e -v $FILE_TMP.tar && rm $FILE || exit
 done
 ```
 
