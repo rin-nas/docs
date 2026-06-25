@@ -53,7 +53,7 @@ filename.txt"
 pscp user@host:/tmp/filename.txt C:\temp\filename.txt
 ```
 
-## Как в текущей папке перепаковать файлы из `*.gz` в `*.xz` с максимальной компрессией?
+## Как в текущей папке перепаковать TAR файлы из `*.gz` в `*.xz` с максимальной компрессией?
 
 Файл `recompress.sh`:
 ```bash
