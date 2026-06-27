@@ -65,6 +65,13 @@ for FILE in *{.tar.gz,.tgz}; do
 done
 ```
 
+## Как посмотреть содержимое файла `/etc/fstab` в отформатированном виде?
+
+```
+sed 's/#.*//' /etc/fstab \
+ | column --table --table-columns SOURCE,TARGET,TYPE,OPTIONS,FREQ,PASS --table-right FREQ,PASS
+```
+
 ## Генератор паролей
 
 https://www.calculator.net/password-generator.html
