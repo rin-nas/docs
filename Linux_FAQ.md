@@ -59,8 +59,8 @@ pscp user@host:/tmp/filename.txt C:\temp\filename.txt
 ```bash
 for FILE in *{.tar.gz,.tgz}; do
     echo "Перепаковка: $FILE"
-    FILE_TMP=${FILE%.tar.gz}
-    FILE_TMP=${FILE_TMP%.tgz}
+    FILE_TMP=${FILE%.tar.gz}   # удаляем ".tar.gz"
+    FILE_TMP=${FILE_TMP%.tgz}  # удаляем ".tgz"
     gzip -d -v -k -f $FILE && xz -T0 -9 -e -v $FILE_TMP.tar && rm $FILE || exit
 done
 ```
