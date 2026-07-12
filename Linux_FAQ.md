@@ -2,11 +2,11 @@
 
 ## Как между серверами измерить скорость копирования данных или доступность портов?
 
-**Вариант с `nc`**
+**Вариант с `nc, pv, dd`**
 
 ```bash
 # Приёмник (сервер)
-nc -l -p PORT | pv | dd of=/dev/null
+nc -l -s HOST -p PORT | pv | dd of=/dev/null
 
 # Источник (клиент)
 dd if=/dev/zero | pv | nc HOST PORT
