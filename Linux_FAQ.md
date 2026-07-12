@@ -8,7 +8,7 @@ nc -l -p PORT | pv | dd of=/dev/null
 ```
 или
 ```bash
-iperf3 -s -B HOST
+iperf3 -s [-B HOST] [-p PORT]
 ```
 
 Источник (клиент)
@@ -17,7 +17,7 @@ dd if=/dev/zero | pv | nc HOST PORT
 ```
 или
 ```bash
-iperf3 -c HOST -B HOST
+iperf3 -c HOST [-p PORT]
 ```
 
 ## Как настроить между серверами SSH вход без пароля по ключу?
