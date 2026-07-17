@@ -83,7 +83,7 @@ sed 's/#.*//' /etc/fstab \
  | column --table --table-columns SOURCE,TARGET,TYPE,OPTIONS,FREQ,PASS --table-right FREQ,PASS
 ```
 
-## Как выполнить команду на нескольких серверах без Ansible
+## Как выполнить команду на нескольких серверах без Ansible и Salt
 ```bash
 for HOST in myhostname-{{11..14},{21..24}}; do echo $HOST && ssh $HOST 'hostname -I' || break; done
 ```
