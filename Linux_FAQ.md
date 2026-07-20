@@ -85,7 +85,7 @@ sed 's/#.*//' /etc/fstab \
 
 ## Как выполнить команду на нескольких серверах без Ansible и Salt
 ```bash
-for HOST in myhostname-{{11..14},{21..24}}; do echo $HOST && ssh $HOST 'hostname -I' || break; done
+for HOST in myhostname-{{11..14},{21..24}}; do echo $HOST && ssh $HOST 'hostname -I' || exit; done
 ```
 
 ## Генератор паролей
