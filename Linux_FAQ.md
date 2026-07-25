@@ -51,16 +51,21 @@ ps -e -orss=,args= \
 
 ## Как скопировать файл между Windows и Linux без WinSCP?
 
-Выполнить на Windows
+Все команды выполнять на Windows. 
+Утилиты `pscp` и `plink` входят в поставку [Putty](https://putty.org.ru/).
+
+**Windows → Linux**
 ```powershell
-# Windows -> Linux
+
 # способ 1
 pscp -pwfile pwfile C:\temp\filename.txt user@host:
-# способ 2
-plink -pwfile pwfile user@host < C:\temp\filename.txt "cat > ~/
-filename.txt"
 
-# Windows <- Linux
+# способ 2
+plink -pwfile pwfile user@host < C:\temp\filename.txt "cat > ~/filename.txt"
+```
+
+**Windows ← Linux**
+```
 pscp user@host:/tmp/filename.txt C:\temp\filename.txt
 ```
 
