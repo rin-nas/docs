@@ -56,7 +56,6 @@ ps -e -orss=,args= \
 
 **Windows → Linux**
 ```powershell
-
 # способ 1
 pscp -pwfile pwfile C:\temp\filename.txt user@host:
 
@@ -72,6 +71,7 @@ pscp user@host:/tmp/filename.txt C:\temp\filename.txt
 ## Как в текущей папке перепаковать TAR файлы из `gz` в `xz` с максимальной компрессией?
 
 Файл `recompress.sh`:
+
 ```bash
 for FILE in *{.tar.gz,.tgz}; do
     echo "Перепаковка: $FILE"
@@ -89,8 +89,13 @@ sed 's/#.*//' /etc/fstab \
 ```
 
 ## Как выполнить команду на нескольких серверах без Ansible и Salt
+
+Файл `run.sh`:
+
 ```bash
-for HOST in myhostname-{{11..14},{21..24}}; do echo $HOST && ssh $HOST 'hostname -I' || exit; done
+for HOST in myhostname-{{11..14},{21..24}}; do
+    echo $HOST && ssh $HOST 'hostname -I' || exit
+done
 ```
 
 ## Генератор паролей
