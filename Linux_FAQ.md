@@ -108,6 +108,12 @@ for HOST in myhostname-{{11..14},{21..24}}; do
 done
 ```
 
+## Как выполнить команду на нескольких серверах и Salt
+
+```bash
+salt 'ont-fpb-[1,2]*' cmd.run 'ss -tunlp | grep 15432'
+```
+
 ## Генератор паролей
 
 https://www.calculator.net/password-generator.html
