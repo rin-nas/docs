@@ -61,7 +61,7 @@ scp -r user@host:/path/to/*.txt /path/to
 
 ## Как скопировать файл между Windows и Linux без WinSCP?
 
-Все команды выполнять на Windows. 
+Все команды выполнять на Windows в командной строке (запустите `cmd`).
 Утилиты `pscp` и `plink` входят в поставку [Putty](https://putty.org.ru/).
 
 **Windows → Linux**
