@@ -49,6 +49,16 @@ ps -e -orss=,args= \
 | awk '{ hr=$1/1024; printf("%13.2fM", hr); print "\t" $2 }'
 ```
 
+## Как скопировать папку с файлами между Linux и Linux?
+
+```bash
+# копирование файлов с локального сервера на удалённый
+scp -r /path/to/*.txt user@host:/path/to
+
+# копирование файлов с удалённого сервера на локальный
+scp -r user@host:/path/to/*.txt /path/to
+```
+
 ## Как скопировать файл между Windows и Linux без WinSCP?
 
 Все команды выполнять на Windows. 
