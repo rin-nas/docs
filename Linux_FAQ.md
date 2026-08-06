@@ -88,7 +88,7 @@ tar -I 'zstd -9' -cf my_folder.tar.zst my_folder
 ## Как распаковать TAR файл в формате `xz` или `zstd`?
 
 ```bash
-sudo apt install xz-utils zstd
+sudo apt install xz-utils zstd pv
 tar -xf my_folder.tar.xz
 tar -I zstd -xf my_folder.tar.zst
 ```
