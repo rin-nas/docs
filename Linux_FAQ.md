@@ -111,11 +111,15 @@ done
 Сценарий — сделали снимок экрана терминала, файл сохранился как PNG и занимает слишком много места.
 True Color (полноцвет) нужно конвертировать в 256 цветов и сделать рекомпрессию.
 
-Файл `png_compress.sh`:
+```
+sudo apt install pngquant optipng advancecomp
+```
 
+Файл `png_compress.sh`:
 ```bash
 pngquant --verbose --skip-if-larger --force --strip --speed 1 256 $1 --output $1
 optipng -strip all -o7 $1
+advpng -z -4 $1
 ```
 
 Использование: 
