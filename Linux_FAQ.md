@@ -117,8 +117,13 @@ sudo apt install pngquant optipng advancecomp
 
 Файл `png_compress.sh`:
 ```bash
+# convert true color to 256 colors
 pngquant --verbose --skip-if-larger --force --strip --speed 1 256 $1 --output $1
+
+# select optimal PNG algorithm
 optipng -strip all -o7 $1
+
+# recompress to best with zopfli
 advpng -z -4 $1
 ```
 
