@@ -155,6 +155,13 @@ done
 salt 'ont-fpb-[1,2]*' cmd.run 'ss -tunlp | grep 15432'
 ```
 
+## Как перезагрузить сервер
+
+```bash
+# жёсткая перезагрузка сервера на уровне ядра ОС
+echo b > /proc/sysrq-trigger
+```
+
 ## Генератор паролей
 
 https://www.calculator.net/password-generator.html
