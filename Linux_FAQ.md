@@ -27,11 +27,11 @@ iperf3 -c HOST [-p PORT] -R # сервер отправляет данные, а
 
 Выполните команды на текущем сервере (который нужно изолировать):
 ```bash
-# запретить входящий трафик от указанного сервера <IP_addr>
-sudo iptables -A INPUT  -s <IP_addr> -j DROP
+# запретить входящий трафик от указанного сервера IP_addr
+sudo iptables -A INPUT  -s IP_addr -j DROP
 
-# запретить исходящий трафик к указанному серверу <IP_addr>
-sudo iptables -A OUTPUT -d <IP_addr> -j DROP
+# запретить исходящий трафик к указанному серверу IP_addr
+sudo iptables -A OUTPUT -d IP_addr -j DROP
 ```
 
 ## Как изолировать текущий сервер от остальных серверов по портам?
