@@ -25,7 +25,7 @@ iperf3 -c HOST [-p PORT] -R # сервер отправляет данные, а
 
 ## Как изолировать текущий сервер от указанного сервера?
 
-Глядя на калькулятор [IPTABLES Single Rule Generator](https://www.latinsud.com/pub/iptables/), можно быстрее понять, как работает `iptables`.
+Глядя на [IPTABLES Single Rule Generator](https://www.latinsud.com/pub/iptables/), можно быстрее понять, как работает `iptables`.
 
 Выполните команды на текущем сервере (который нужно изолировать):
 ```bash
