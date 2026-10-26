@@ -118,8 +118,9 @@ pscp user@host:/tmp/filename.txt C:\temp\filename.txt
 ## Как заархивировать папку в файл формата `xz` или `zstd` с указанным уровнем сжатия?
 ```bash
 sudo apt install xz-utils zstd
-tar -c -f - my_folder | pv -p -s $(du -sb my_folder | cut -f1) |  xz -9 > my_folder.tar.xz
 tar -I 'zstd -9' -cf my_folder.tar.zst my_folder
+tar -c -f - my_folder | xz -9 > my_folder.tar.xz
+tar -c -f - my_folder | pv -p -s $(du -sb my_folder | cut -f1) |  xz -9 > my_folder.tar.xz  # с отображением прогресса выполнения
 ```
 
 ## Как распаковать TAR файл в формате `xz` или `zstd`?
