@@ -16,13 +16,20 @@ dd if=/dev/zero | pv | nc HOST PORT
 
 ```bash
 # Приёмник (сервер)
+ethtool -S eth0                # до запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)   
+
 iperf3 -s [-B HOST] [-p PORT]
 
-# Источник (клиент)
-iperf3 -c HOST [-p PORT] -P 4    # клиент отправляет данные (в 4 потока), а сервер их принимает 
-iperf3 -c HOST [-p PORT] -P 4 -R # сервер отправляет данные (в 4 потока), а клиент их принимает (наоборот)
+ethtool -S eth0                # после запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)
 
+# Источник (клиент)
+ethtool -S eth0                # до запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)   
+
+iperf3 -c HOST [-p PORT] -P 4  # клиент отправляет данные (в 4 потока), а сервер их принимает 
+iperf3 -c HOST [-p PORT] -R    # сервер отправляет данные, а клиент их принимает (наоборот)
 iperf3 -c HOST [-p PORT] -b 1G # с ограничением скорости передачи данных (G = Гбит/с)
+
+ethtool -S eth0                # после запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)
 ```
 
 ## Как изолировать текущий сервер от указанного сервера?
