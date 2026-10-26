@@ -2,7 +2,7 @@
 
 ## Как между серверами измерить скорость копирования данных и/или доступность портов?
 
-**Вариант с `nc, pv, dd`**
+### Вариант с `nc, pv, dd`
 
 ```bash
 # Приёмник (сервер)
@@ -12,17 +12,20 @@ nc -l -s HOST -p PORT | pv | dd of=/dev/null
 dd if=/dev/zero | pv | nc HOST PORT
 ```
 
-**Вариант с `iperf3`**
+### Вариант с `iperf3`
 
+**Приёмник (сервер)**
 ```bash
-# Приёмник (сервер)
+
 ethtool -S eth0                # до запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)   
 
 iperf3 -s [-B HOST] [-p PORT]
 
 ethtool -S eth0                # после запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)
+```
 
-# Источник (клиент)
+**Источник (клиент)**
+```
 ethtool -S eth0                # до запуска iperf3 фиксируем счётчики ошибок (errors, dropped, discards)   
 
 iperf3 -c HOST [-p PORT] -P 4  # клиент отправляет данные (в 4 потока), а сервер их принимает 
