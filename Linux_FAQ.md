@@ -210,6 +210,12 @@ salt 'ont-fpb-[1,2]*' cmd.run 'ss -tunlp | grep 15432'
 echo b > /proc/sysrq-trigger
 ```
 
+## Как обновить Fedora Linux, если некоторые пакеты стали недоступны?
+
+```bash
+root@fedora:~# dnf upgrade --skip-unavailable --allowerasing --allow-downgrade --disablerepo=fedora-cisco-openh264^C
+```
+
 ## Генератор паролей
 
 https://www.calculator.net/password-generator.html
