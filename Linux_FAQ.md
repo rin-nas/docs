@@ -227,7 +227,7 @@ root@fedora:~# dnf upgrade --skip-unavailable --allowerasing --allow-downgrade -
 for f in $(find . -maxdepth 1 -iname "*.jpg" ! -iname "*.optimized.*" | sort -r)
 do
     out=$(echo "$f" | tr '[A-Z]' '[a-z]') # convert file name to lowercase
-    out="$(dirname "${out}")/$(basename ${out} .jpg).optimized.jxl" #add suffix ".optimized."
+    out="$(dirname "${out}")/$(basename ${out} .jpg).optimized.jxl" # add suffix ".optimized."
     # https://developers.google.com/speed/docs/insights/OptimizeImages
     all="magick convert \"$f\" -adaptive-resize 2560x2560 -strip -quality 90 -format jxl -colorspace sRGB -auto-level -auto-orient \"$out\" \n $all" # collect all commands separeted by new line
     
