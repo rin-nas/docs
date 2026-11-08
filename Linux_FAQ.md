@@ -216,7 +216,7 @@ echo b > /proc/sysrq-trigger
 root@fedora:~# dnf upgrade --skip-unavailable --allowerasing --allow-downgrade --disablerepo=fedora-cisco-openh264^C
 ```
 
-## Как сконвертировать фотограции из формата JPEG в JXL (JPEG XL)
+## Как сконвертировать фотографии из формата JPEG в JXL (JPEG XL)
 
 Цель — более компактное хранение фотографий в современном формате [JPEG XL](https://jpegxl.info/).
 
