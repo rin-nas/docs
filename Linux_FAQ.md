@@ -216,29 +216,37 @@ echo b > /proc/sysrq-trigger
 root@fedora:~# dnf upgrade --skip-unavailable --allowerasing --allow-downgrade --disablerepo=fedora-cisco-openh264^C
 ```
 
-## Как сконвертировать фотографии из формата JPEG в JXL (JPEG XL)
+## Как сконвертировать фотографии из формата JPG в JXL (JPEG XL)
 
-Цель — более компактное хранение фотографий в современном формате [JPEG XL](https://jpegxl.info/).
+Цель — автоматическая обработка фотографий после съёмки фотоаппаратом, компактное хранение изображений в современном формате [JPEG XL](https://jpegxl.info/).
 
-Файл `convert_2560_jxl.sh`:
+Файл `convert_photos.sh`:
 
 ```bash
-# resize jpeg photos in current directory
+# resize and optimize JPEG photos to JPEG XL format (https://jpegxl.info/) in current directory 
 for f in $(find . -maxdepth 1 -iname "*.jpg" ! -iname "*.optimized.*" | sort -r)
 do
-    out=$(echo "$f" | tr '[A-Z]' '[a-z]') # convert file name to lowercase
-    out="$(dirname "${out}")/$(basename ${out} .jpg).optimized.jxl" # add suffix ".optimized."
-    # https://developers.google.com/speed/docs/insights/OptimizeImages
-    all="magick convert \"$f\" -adaptive-resize 2560x2560 -strip -quality 90 -format jxl -colorspace sRGB -auto-level -auto-orient \"$out\" \n $all" # collect all commands separeted by new line
-    
+    out=$(echo "$f" | tr '[A-Z]' '[a-z]') #convert file name to lowercase
+    out="$(dirname "${out}")/$(basename ${out} .jpg).optimized.jxl" #add suffix ".optimized."
+    is_panorama=$(magick identify -format '%[fx:w/h>3]' $f)
+    if test "$is_panorama" = 0; then
+        # это обычное изображение, устанавливаем максимальную ширину или высоту
+        #resize='2560x2560\>' # QHD (2K) old
+        resize='3840x3840\>'  # 4K UHD
+    else
+        # это панорама, устанавливаем минимальную ширину или высоту
+        resize='x2160^\>' # 4K UHD
+    fi
+    # collect all commands separeted by new line
+    # -auto-gamma     не используем, т.к. фотография пересвечивается белым цветом
+    # -white-balance  не используем, т.к. фотография становится пресной, теряется яркость цветов
+    all="magick convert '$f' -verbose -resize '$resize' -filter Lanczos -strip -quality 85 -format jxl -colorspace sRGB -auto-level -auto-orient '$out'\n$all"
 done
-echo -e "$all" | xargs -t -L 1 -P 8 -I CMD bash -c CMD #do all commands in parallel
 
-# TODO при запуске скрипта xargs (GNU findutils) 4.10.0 выводит:  
-# xargs: предупреждение: параметры --max-lines и --replace/-I/-i взаимно исключают друг друга, игнорируется предыдущее значение --max-lines
+# echo -e "$all"; exit # для отладки
 
-
-# TODO !!! - научить корректно обрабатывать широкие панорамы, чтобы размер не превращался в 2560x580 !!!
+# do all commands in parallel
+echo -e "$all" | xargs -t -P 8 -I CMD bash -c CMD
 ```
 
 ## Генератор паролей
